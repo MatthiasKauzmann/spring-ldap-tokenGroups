@@ -35,12 +35,12 @@ public class TokenGroup {
     public List<String> getTokenGroups(String cN) throws Exception {
       
         // succeeding lookup() takes a String[] as an argument for the attributes to retrieve
-        String[] returns = {TOKEN_GROUPS};
+        String[] extendedProperty = {TOKEN_GROUPS};
         // instantiate a proper LdapTemplate object
         LdapTemplate ldapTemplate = ldapTemplate();
         // choose the lookup() that takes the distinguished name at first, then attributes and a mapper at last 
-        AdObject adObject = ldapTemplate.lookup("CN=" + cN + "," + userSearch, returns,
-                new AdRoleGroupAttributesMapper());
+        AdObject adObject = ldapTemplate.lookup("CN=" + cN + "," + userSearch,
+                extendedProperty, new AdObjectAttributesMapper());
 
         return adObject.getTokenGroups();
 
