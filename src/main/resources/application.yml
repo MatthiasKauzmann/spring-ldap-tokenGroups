@@ -1,0 +1,6 @@
+active-directory:
+  domain: some.domain.com
+  url: ldaps://some.url.com:port
+  manager-dn: CN=AUTHUSER,OU=someUnit,DC=bla,DC=bla,DC=bla 
+  manager-password: *****
+  user-search-base: ou=someUnit,dc=bla,dc=bla,dc=bla
