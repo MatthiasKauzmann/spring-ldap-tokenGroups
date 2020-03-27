@@ -13,9 +13,15 @@ or group has. So if I was a member of 20 groups in my workplace my ```memberOf``
 But if these groups were also members in some other groups - let's say in 10 - I'd have a total count of 30 (adding my indirect/transient 
 memberships). This piece of information is hard to get! Trust me. 
 
+There's no method called getTokenGroups(), not in Java or elsewhere. A collegue of mine who's a .NET-developer told me that there's a method called refreshCache() in C#. It refreshes AD's property cache which is key to get tokenGroups since the operation of gathering 
+tokenGroups exceeds AD's short living cache: by the time AD has gathered one's tokenGroups it has already forgotten whose tokenGroups it
+was^^ Still,
+
 A naive approach would be to gather transient memberships by recursion. You would start with fetching an user's memberOf-attribute, which 
-returns a list of the distinguished names of the memberships. A ```distinguished name``` is the best filter one can provide for a LDAP 
-search b/c it's the complete path, which is the fastest route to resources in hierarchical databases like AD.    
+returns a list of distinguished names of the memberships. A ```distinguished name``` (DN) is the best filter one can provide for a LDAP 
+search b/c it's the complete path, which is the fastest route to resources in hierarchical databases like AD. Despite the DN, this 
+approach is not of high-performance. It's actually really slow. You would need to implement a recursive method that calls itself for each 
+DN in a DN's memberOf-attribute and find memberships until every group's group and so forth is gathered. 
 
 
 A request to LDAP comes with a short living properties cache 
