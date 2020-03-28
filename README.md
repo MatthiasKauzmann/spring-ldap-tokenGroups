@@ -11,7 +11,7 @@ provide many methods that translate into AD queries. Still, asking for that one 
 tokenGroups is a list of byte arrays. List entries contain the ```objectSid``` of both direct and indirect (transient) authorities/memberships an user or group has. So if I was a member of 20 groups in my workplace my ```memberOf``` attribute in AD would have a count of 20. But if these groups were also members in some other groups - let's say in 10 - I'd have a total count of 30 (adding my indirect/transient memberships which is not displayed by the memberOf-attribute). This piece of information is hard to get! Trust me. 
 :point_up:
 
-There's no method called getTokenGroups(), not in Java or elsewhere. A collegue of mine who's a .NET-developer told me that there's a method called refreshCache() in C#. It refreshes AD's property cache which is key to get tokenGroups since the operation of gathering 
+There's no method called getTokenGroups(), not in Java or elsewhere. A colleague of mine who's a .NET-developer told me that there's a method called refreshCache() in C#. It refreshes AD's property cache which is key to get tokenGroups since the operation of gathering 
 tokenGroups exceeds AD's short living cache: by the time AD has gathered one's tokenGroups it has already forgotten whose tokenGroups it
 was :laughing: Nevertheless, .NET-developers do also need to implement a getTokenGroups()-method.
 
