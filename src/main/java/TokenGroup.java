@@ -34,7 +34,7 @@ public class TokenGroup {
      */
     public List<String> getTokenGroups(String cN) throws Exception {
       
-        // succeeding lookup() takes a String[] as an argument for the attributes to retrieve
+        // subsequent lookup() takes a String[] as an argument for the attributes to retrieve
         String[] extendedProperty = {TOKEN_GROUPS};
         // instantiate a proper LdapTemplate object
         LdapTemplate ldapTemplate = ldapTemplate();
